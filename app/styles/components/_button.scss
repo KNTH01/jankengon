@@ -32,4 +32,8 @@
     background-color: $color2;
     color: $text-color2;
   }
+
+  &:disabled {
+    opacity: 0.4
+  }
 }
