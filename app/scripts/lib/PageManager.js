@@ -6,6 +6,9 @@ class PageManager {
     this.$battleResult = document.querySelector('.Battle-result')
     this.$score = document.querySelector('.Score')
 
+    // used to have a singleton of the counter interval
+    this.counterIntervalId = null
+
     this.init()
   }
 
@@ -42,9 +45,12 @@ class PageManager {
 
   startBattle () {
     // display Battle block
-    this.resetBattle()
-    this.$battle.style.display = 'block'
-    this.launchCounter()
+    if (this.$playButton.disabled === false) {
+      this.resetBattle()
+      this.$playButton.disabled = true
+      this.$battle.style.display = 'block'
+      this.launchCounter()
+    }
   }
 
   resetBattle () {
@@ -59,25 +65,24 @@ class PageManager {
 
     elem.innerText = counter
 
-    const id = setInterval(() => {
-      counter--
-      elem.innerText = counter
-      if (counter === 0) {
-        clearInterval(id)
-        this.launchMatch()
-      }
-    }, 1000)
+    if (this.counterIntervalId === null) {
+      this.counterIntervalId = setInterval(() => {
+        counter--
+        elem.innerText = counter
+        if (counter === 0) {
+          clearInterval(this.counterIntervalId)
+          this.counterIntervalId = null
+          this.$playButton.disabled = false
+          this.launchMatch()
+        }
+      }, 1000)
+    }
   }
 
   launchMatch () {
     this.$battleResult.style.display = 'block'
     this.$score.style.display = 'block'
   }
-
-  togglePlayButton () {
-
-  }
-
 }
 PageManager.GAME_WATCHER = 'watcher'
 PageManager.GAME_PLAYER = 'player'
