@@ -1,5 +1,5 @@
 const expect = require('chai').expect
-const BattleRPS = require('../app/scripts/lib/BattleRPS')
+import BattleRPS from '../app/scripts/lib/BattleRPS'
 
 describe('Battle RPS / JanKenPon', function () {
   it('Rock vs Scissors sould return 1', () => {
