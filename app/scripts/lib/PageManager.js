@@ -4,7 +4,7 @@ class PageManager {
   }
 
   static attachGameSelectionEvent () {
-    const buttonClasses = ['ChoiceButtons-watch', 'ChoiceButtons-play']
+    const buttonClasses = ['ChoiceButtons-watcher', 'ChoiceButtons-player']
     for (let buttonCls of buttonClasses) {
       document.querySelector(`.${buttonCls}`).onclick = function () {
         PageManager.gameSelection(buttonCls.replace('ChoiceButtons-', ''))
@@ -12,11 +12,18 @@ class PageManager {
     }
   }
 
-  static gameSelection (game) {
-    console.log(game + ' game is selected')
+  static gameSelection (gameMode) {
+    PageManager.setChoiceTitle(gameMode)
+  }
+
+  static setChoiceTitle (gameMode) {
+    const selectorCls = 'Game-choice'
+    const choiceTitleElem = document.querySelector(`.${selectorCls}`)
+    choiceTitleElem.innerText = gameMode
+    choiceTitleElem.className = `${selectorCls} ChoiceTitle-${gameMode}`
   }
 }
-PageManager.GAME_WATCH = 'watch'
-PageManager.GAME_PLAY = 'play'
+PageManager.GAME_WATCHER = 'watcher'
+PageManager.GAME_PLAYER = 'player'
 
 export default PageManager

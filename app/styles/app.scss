@@ -35,17 +35,17 @@ body {
 }
 
 .ChoiceTitle {
-  &-play,
-  &-watch {
+  &-player,
+  &-watcher {
     font-size: 2rem;
     font-style: italic;
   }
 
-  &-play {
+  &-player {
     color: $color3;
   }
 
-  &-watch {
+  &-watcher {
     color: $color4;
   }
 }
@@ -53,17 +53,17 @@ body {
 .ChoiceButtons {
   margin-bottom: 20px;
 
-  &-play,
-  &-watch {
+  &-player,
+  &-watcher {
     font-size: 2rem;
     width: 150px;
   }
 
-  &-play {
+  &-player {
     background-color: $color3;
   }
 
-  &-watch {
+  &-watcher {
     background-color: $color4;
   }
 }
