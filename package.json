@@ -15,7 +15,7 @@
     "build:css": "npm run build:fonts && npm run scss && npm run autoprefixer",
     "build:js": "browserify -e app/scripts/main.js | uglifyjs -c warnings=false -m > dist/scripts/build.js",
     "build:images": "npm run imagemin",
-    "build:fonts" : "cp -r app/styles/fonts dist/styles/",
+    "build:fonts": "cp -r app/styles/fonts dist/styles/",
     "build:all": "npm run build:css && npm run build:js && npm run build:images",
     "watch:js": "watchify -vd -e app/scripts/main.js -o dist/scripts/build.js",
     "watch:css": "npm run build:css && onchange \"app/styles\" -- npm run build:css",
@@ -46,12 +46,14 @@
     "autoprefixer": "^6.5.0",
     "babelify": "^7.3.0",
     "browser-sync": "^2.17.1",
+    "chai": "^3.5.0",
     "eslint": "^3.7.1",
     "eslint-config-standard": "^6.2.0",
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-standard": "^2.0.1",
     "imagemin": "^5.2.2",
     "imagemin-cli": "^3.0.0",
+    "mocha": "^3.1.0",
     "node-sass": "^3.10.1",
     "npm-run-all": "^3.1.0",
     "onchange": "^3.0.2",
@@ -61,5 +63,6 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "flexboxgrid": "^6.3.1"  }
+    "flexboxgrid": "^6.3.1"
+  }
 }
