@@ -1,49 +1,59 @@
 class PageManager {
-  static init () {
-    PageManager.attachGameSelectionEvent()
-    PageManager.attachPlayEvent()
+
+  constructor () {
+    this.$playButton = document.querySelector('.PlayButton')
+    this.$battle = document.querySelector('.Battle')
+    this.$battleResult = document.querySelector('.Battle-result')
+    this.$score = document.querySelector('.Score')
+
+    this.init()
   }
 
-  static attachGameSelectionEvent () {
+  init () {
+    this.attachGameSelectionEvent()
+    this.attachPlayEvent()
+  }
+
+  attachGameSelectionEvent () {
     const buttonClasses = ['ChoiceButtons-watcher', 'ChoiceButtons-player']
     for (let buttonCls of buttonClasses) {
-      document.querySelector(`.${buttonCls}`).onclick = function () {
-        PageManager.gameSelection(buttonCls.replace('ChoiceButtons-', ''))
+      document.querySelector(`.${buttonCls}`).onclick = () => {
+        this.gameSelection(buttonCls.replace('ChoiceButtons-', ''))
       }
     }
   }
 
-  static attachPlayEvent () {
-    document.querySelector('.PlayButton').onclick = function () {
-      PageManager.startBattle()
+  attachPlayEvent () {
+    this.$playButton.onclick = () => {
+      this.startBattle()
     }
   }
 
-  static gameSelection (gameMode) {
-    PageManager.setChoiceTitle(gameMode)
+  gameSelection (gameMode) {
+    this.setChoiceTitle(gameMode)
   }
 
-  static setChoiceTitle (gameMode) {
+  setChoiceTitle (gameMode) {
     const selectorCls = 'Game-choice'
     const choiceTitleElem = document.querySelector(`.${selectorCls}`)
     choiceTitleElem.innerText = gameMode
     choiceTitleElem.className = `${selectorCls} ChoiceTitle-${gameMode}`
   }
 
-  static startBattle () {
+  startBattle () {
     // display Battle block
-    PageManager.resetBattle()
-    document.querySelector('.Battle').style.display = 'block'
-    PageManager.launchCounter()
+    this.resetBattle()
+    this.$battle.style.display = 'block'
+    this.launchCounter()
   }
 
-  static resetBattle () {
-    document.querySelector('.Battle').style.display = 'none'
-    document.querySelector('.Battle-result').style.display = 'none'
-    document.querySelector('.Score').style.display = 'none'
+  resetBattle () {
+    this.$battle.style.display = 'none'
+    this.$battleResult.style.display = 'none'
+    this.$score.style.display = 'none'
   }
 
-  static launchCounter () {
+  launchCounter () {
     let counter = 3
     const elem = document.querySelector('.Battle-counter')
 
@@ -54,17 +64,17 @@ class PageManager {
       elem.innerText = counter
       if (counter === 0) {
         clearInterval(id)
-        PageManager.launchMatch()
+        this.launchMatch()
       }
     }, 1000)
   }
 
-  static launchMatch () {
-    document.querySelector('.Battle-result').style.display = 'block'
-    document.querySelector('.Score').style.display = 'block'
+  launchMatch () {
+    this.$battleResult.style.display = 'block'
+    this.$score.style.display = 'block'
   }
 
-  static togglePlayButton () {
+  togglePlayButton () {
 
   }
 
