@@ -18,17 +18,20 @@ body {
   color: $color1;
   font-weight: bold;
   font-size: 7rem;
+  margin-bottom: 50px;
 }
 
 .Subtitle {
   font-size: 2rem;
   color: $color2;
   font-style: italic;
+  margin-bottom: 84px;
 }
 
 .BodyContent {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 4px;
+  padding: 30px;
 }
 
 .ChoiceTitle {
@@ -48,8 +51,11 @@ body {
 }
 
 .ChoiceButtons {
+  margin-bottom: 20px;
   &-play,
   &-watch {
+    font-size: 2rem;
+    width: 150px;
   }
 
   &-play {
