@@ -68,6 +68,13 @@ body {
   }
 }
 
+.Battle {
+  &-count {
+    font-size: 8rem;
+    color: $color2;
+  }
+}
+
 .HandGame {
   font-size: 15rem;
 }
