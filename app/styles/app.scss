@@ -1,3 +1,68 @@
+$color1: #48466D;
+$color2: #3D84A8;
+$color3: #46CDCF;
+$color4: #ABEDD8;
+$text-color: #424242;
+
+@import "core/reset";
+@import "core/typography";
+@import "core/utilities";
+
+@import "components/button";
+
 body {
-  background-color: #EEE;
+  background: url('/dist/images/seigaiha.png');
+}
+
+.Title {
+  color: $color1;
+  font-weight: bold;
+  font-size: 7rem;
+  margin-bottom: 50px;
+}
+
+.Subtitle {
+  font-size: 2rem;
+  color: $color2;
+  font-style: italic;
+  margin-bottom: 84px;
+}
+
+.BodyContent {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  padding: 30px;
+}
+
+.ChoiceTitle {
+  &-play,
+  &-watch {
+    font-size: 2rem;
+    font-style: italic;
+  }
+
+  &-play {
+    color: $color3;
+  }
+
+  &-watch {
+    color: $color4;
+  }
+}
+
+.ChoiceButtons {
+  margin-bottom: 20px;
+  &-play,
+  &-watch {
+    font-size: 2rem;
+    width: 150px;
+  }
+
+  &-play {
+    background-color: $color3;
+  }
+
+  &-watch {
+    background-color: $color4;
+  }
 }

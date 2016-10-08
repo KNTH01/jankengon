@@ -9,12 +9,13 @@
     ]
   },
   "scripts": {
-    "autoprefixer": "postcss -u autoprefixer -r dist/styles/*",
+    "autoprefixer": "postcss -u autoprefixer -r dist/styles/*.css",
     "scss": "node-sass --output-style compressed -o dist/styles app/styles/app.scss",
     "imagemin": "imagemin app/images/* -o dist/images",
-    "build:css": "npm run scss && npm run autoprefixer",
+    "build:css": "npm run build:fonts && npm run scss && npm run autoprefixer",
     "build:js": "browserify -e app/scripts/main.js | uglifyjs -c warnings=false -m > dist/scripts/build.js",
     "build:images": "npm run imagemin",
+    "build:fonts" : "cp -r app/styles/fonts dist/styles/",
     "build:all": "npm run build:css && npm run build:js && npm run build:images",
     "watch:js": "watchify -vd -e app/scripts/main.js -o dist/scripts/build.js",
     "watch:css": "npm run build:css && onchange \"app/styles\" -- npm run build:css",
@@ -60,6 +61,5 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "spectre.css": "^0.1.27"
-  }
+    "flexboxgrid": "^6.3.1"  }
 }
