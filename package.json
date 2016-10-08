@@ -1,0 +1,66 @@
+{
+  "name": "jankengon",
+  "version": "1.0.0",
+  "description": "jankenpon, pierre-feuille-ciseau, shifumi, schnick-schnack-schnuck",
+  "main": "index.js",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "scripts": {
+    "autoprefixer": "postcss -u autoprefixer -r dist/styles/*",
+    "scss": "node-sass --output-style compressed -o dist/styles app/styles/app.scss",
+    "imagemin": "imagemin app/images/* -o dist/images",
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:js": "browserify -e app/scripts/main.js | uglifyjs -c warnings=false -m > dist/scripts/build.js",
+    "build:images": "npm run imagemin",
+    "build:all": "npm run build:css && npm run build:js && npm run build:images",
+    "watch:js": "watchify -vd -e app/script/main.js -o dist/scripts/build.js",
+    "watch:css": "npm run build:css && onchange \"app/styles\" -- npm run build:css",
+    "watch:images": "onchange \"app/images\" -- npm run build:images",
+    "clean": "rm dist/scripts/*.js dist/styles/*.css ; rm -r dist/images",
+    "serve": "browser-sync start --server --files \"dist/styles/*.css, dist/scripts/*.js, **/*.html, !node_modules/**/*.html\"",
+    "dev": "npm run build:all && npm-run-all -p watch:css watch:js watch:images serve",
+    "start": "npm run build:all && npm run serve",
+    "test": "mocha test/ --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinNTH/jankengon.git"
+  },
+  "keywords": [
+    "jankenpon",
+    "pierre-feuille-ciseau",
+    "shifumi",
+    "schnick-schnack-schnuck"
+  ],
+  "author": "Kevin Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KevinNTH/jankengon/issues"
+  },
+  "homepage": "https://github.com/KevinNTH/jankengon#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.17.1",
+    "browserify-hmr": "^0.3.5",
+    "eslint": "^3.7.1",
+    "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-promise": "^3.0.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "imagemin": "^5.2.2",
+    "imagemin-cli": "^3.0.0",
+    "node-sass": "^3.10.1",
+    "npm-run-all": "^3.1.0",
+    "onchange": "^3.0.2",
+    "postcss": "^5.2.4",
+    "postcss-cli": "^2.6.0",
+    "uglify": "^0.1.5",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "spectre.css": "^0.1.27"
+  }
+}
