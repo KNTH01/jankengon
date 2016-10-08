@@ -24,7 +24,7 @@
     "serve": "browser-sync start --server --files \"dist/styles/*.css, dist/scripts/*.js, **/*.html, !node_modules/**/*.html\"",
     "dev": "npm run build:all && npm-run-all -p watch:css watch:js watch:images serve",
     "start": "npm run build:all && npm run serve",
-    "test": "mocha test/ --recursive"
+    "test": "mocha test/ --recursive --compilers js:babel-register"
   },
   "repository": {
     "type": "git",
