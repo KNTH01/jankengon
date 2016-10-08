@@ -70,6 +70,10 @@ body {
 
 .Battle {
   &-count {
+    background-color: white;
+    border: 1px solid $color1;
+    border-radius: 4px;
+    padding: 0 35px;
     font-size: 8rem;
     color: $color2;
   }
