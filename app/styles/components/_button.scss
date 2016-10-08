@@ -9,6 +9,10 @@
   font-family: Oswald;
   outline: none;
 
+  &-large {
+    font-size: 3rem;
+  }
+
   &:hover {
     opacity: 0.8;
   }
@@ -19,4 +23,17 @@
     outline: none;
   }
 
+  &-primary {
+    background-color: $color1;
+    color: $text-color2;
+  }
+
+  &-secondary {
+    background-color: $color2;
+    color: $text-color2;
+  }
+
+  &:disabled {
+    opacity: 0.4
+  }
 }
