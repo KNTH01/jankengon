@@ -1,0 +1,31 @@
+{
+  "name": "jankengon",
+  "version": "1.0.0",
+  "description": "jankenpon, pierre-feuille-ciseau, shifumi, schnick-schnack-schnuck",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinNTH/jankengon.git"
+  },
+  "keywords": [
+    "jankenpon",
+    "pierre-feuille-ciseau",
+    "shifumi",
+    "schnick-schnack-schnuck"
+  ],
+  "author": "Kevin Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KevinNTH/jankengon/issues"
+  },
+  "homepage": "https://github.com/KevinNTH/jankengon#readme",
+  "devDependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-promise": "^3.0.0",
+    "eslint-plugin-standard": "^2.0.1"
+  }
+}
