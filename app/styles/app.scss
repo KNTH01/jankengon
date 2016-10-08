@@ -69,7 +69,9 @@ body {
 }
 
 .Battle {
-  &-count {
+  display: none;
+
+  &-counter {
     background-color: white;
     border: 1px solid $color1;
     border-radius: 4px;
@@ -77,8 +79,16 @@ body {
     font-size: 8rem;
     color: $color2;
   }
+
+  &-result {
+    display: none;
+  }
 }
 
 .HandGame {
   font-size: 15rem;
+}
+
+.Score {
+  display: none;
 }
