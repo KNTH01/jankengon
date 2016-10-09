@@ -56,10 +56,6 @@ class PageManager {
       this.$playButton.disabled = true
       this.$battle.style.display = 'block'
 
-      const p1 = new Player()
-      const p2 = new Player()
-      this.bm = new BattleManager(p1, p2)
-
       this.launchCounter()
     }
   }
@@ -71,7 +67,7 @@ class PageManager {
   }
 
   launchCounter () {
-    let counter = 3
+    let counter = 1
     const elem = document.querySelector('.Battle-counter')
 
     elem.innerText = counter
@@ -83,17 +79,32 @@ class PageManager {
         if (counter === 0) {
           clearInterval(this.counterIntervalId)
           this.counterIntervalId = null
-          this.$playButton.disabled = false
+
+          if (this.bm === null) {
+            this.$battleResult.style.display = 'block'
+            this.$score.style.display = 'block'
+
+            const p1 = new Player()
+            const p2 = new Player()
+            this.bm = new BattleManager(p1, p2)
+          }
+
           this.launchMatch()
+
+          if (!this.bm.done) {
+            this.launchCounter()
+          } else {
+            // reset game state
+            this.bm = null
+            // enable playbutton
+            this.$playButton.disabled = false
+          }
         }
       }, 1000)
     }
   }
 
   launchMatch () {
-    this.$battleResult.style.display = 'block'
-    this.$score.style.display = 'block'
-
     const scores = this.bm.battle()
     this.printGameBattle(scores[0], scores[1])
     this.updateScore(scores[0], scores[1])
