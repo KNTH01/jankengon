@@ -92,3 +92,11 @@ body {
 .Score {
   display: none;
 }
+
+.MatchResult {
+  display: none;
+
+  &-winner {
+    font-size: 5rem;
+  }
+}

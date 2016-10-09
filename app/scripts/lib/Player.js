@@ -1,7 +1,8 @@
 import BattleRPS from './BattleRPS'
 
 class Player {
-  constructor (playerType = Player.COMPUTER, playerMode = Player.COMPUTER_MODE_RANDOM) {
+  constructor (playerName = 'Nobody', playerType = Player.COMPUTER, playerMode = Player.COMPUTER_MODE_RANDOM) {
+    this.playerName = playerName
     this.playerType = playerType
     this.playerMode = playerMode
     this.winner = false
@@ -15,7 +16,7 @@ class Player {
 
   randomHit () {
     const RPS = [BattleRPS.ROCK, BattleRPS.PAPER, BattleRPS.SCISSORS]
-    const hitNumber = Math.floor(Math.random() * 2)
+    const hitNumber = Math.floor(Math.random() * 3)
 
     return RPS[hitNumber]
   }

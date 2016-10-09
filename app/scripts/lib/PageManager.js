@@ -1,6 +1,13 @@
 import BattleManager from './BattleManager'
 import Player from './Player'
 
+// class Animate {
+//
+//   static attachAnimation (selector) {
+//     document.querySelector
+//   }
+// }
+
 class PageManager {
 
   constructor () {
@@ -84,8 +91,8 @@ class PageManager {
             this.$battleResult.style.display = 'block'
             this.$score.style.display = 'block'
 
-            const p1 = new Player()
-            const p2 = new Player()
+            const p1 = new Player('Computer #1')
+            const p2 = new Player('Computer #2')
             this.bm = new BattleManager(p1, p2)
           }
 
@@ -94,10 +101,7 @@ class PageManager {
           if (!this.bm.done) {
             this.launchCounter()
           } else {
-            // reset game state
-            this.bm = null
-            // enable playbutton
-            this.$playButton.disabled = false
+            this.endMatch()
           }
         }
       }, 1000)
@@ -116,6 +120,7 @@ class PageManager {
       'P': 'fa-hand-paper-o',
       'S': 'fa-hand-scissors-o'
     }
+    console.log(score1.hit, score2.hit)
     document.querySelector('.HandGame-player1 i').className = `fa ${mapRPSToCls[score1.hit]}`
     document.querySelector('.HandGame-player2 i').className = `fa ${mapRPSToCls[score2.hit]}`
   }
@@ -123,6 +128,17 @@ class PageManager {
   updateScore (score1, score2) {
     document.querySelector('.Score-counter-player1').innerText = this.bm.gameScore.playerScores[0].countWonRounds()
     document.querySelector('.Score-counter-player2').innerText = this.bm.gameScore.playerScores[1].countWonRounds()
+  }
+
+  endMatch () {
+    // set up the winner
+    document.querySelector('.MatchResult-winner').innerText = this.bm.winner.playerName
+    document.querySelector('.MatchResult').style.display = 'block'
+
+    // reset game state
+    this.bm = null
+    // enable playbutton
+    this.$playButton.disabled = false
   }
 
 }
