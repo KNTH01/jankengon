@@ -31,6 +31,7 @@ describe('Battle Manager', function () {
         bm.gameScore.registerNewScores({ status: 'W', hit: 'R' }, { status: 'L', hit: 'S' })
 
         // the match is not finished yet, just 2 rounds have been played
+        bm.checkGameState()
         expect(bm.done).to.be.false
         expect(bm.winner).to.be.null
 
@@ -45,11 +46,11 @@ describe('Battle Manager', function () {
         bm.gameScore.registerNewScores({ status: 'E', hit: 'P' }, { status: 'E', hit: 'P' })
         bm.gameScore.registerNewScores({ status: 'W', hit: 'S' }, { status: 'L', hit: 'P' })
 
+        bm.checkGameState()
         expect(bm.gameScore.getMaxWonRounds()).to.be.equal(10)
         expect(bm.gameScore.getMaxLostRounds()).to.be.equal(10)
         expect(bm.gameScore.getMaxEqualityRounds()).to.be.equal(1)
         expect(bm.winner).to.be.equal(comp1)
-        expect(bm.nbRound).to.be.equal(12)
       })
     })
   })
