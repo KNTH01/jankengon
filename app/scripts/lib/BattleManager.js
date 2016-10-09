@@ -18,7 +18,7 @@ class BattleManager {
 
   battle (uiHit1 = null, uiHit2 = null) {
     const hit1 = this.p1.play(uiHit1)
-    const hit2 = this.p2.play(uiHit2)
+    const hit2 = this.p2.play(uiHit2, this.gameScore.playerScores[1].score)
     const res = BattleRPS.battle(hit1, hit2)
     let status1 = 'E'
     let status2 = 'E'
