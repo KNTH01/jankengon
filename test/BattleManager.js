@@ -5,8 +5,8 @@ import Player from '../app/scripts/lib/Player'
 describe('Battle Manager', function () {
   describe('The game', function () {
     it('should finish with a winner', () => {
-      const comp1 = new Player(Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
-      const comp2 = new Player(Player.COMPUTER)
+      const comp1 = new Player('Comp1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
+      const comp2 = new Player('Comp2', Player.COMPUTER)
 
       const bm = new BattleManager(comp1, comp2)
 
@@ -22,8 +22,8 @@ describe('Battle Manager', function () {
 
     describe('The Score', function () {
       it('should have a history score', () => {
-        const comp1 = new Player(Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
-        const comp2 = new Player(Player.COMPUTER)
+        const comp1 = new Player('Comp1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
+        const comp2 = new Player('Comp2', Player.COMPUTER)
 
         const bm = new BattleManager(comp1, comp2)
 

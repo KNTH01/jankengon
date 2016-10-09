@@ -8,6 +8,7 @@ $text-color2: #EEE;
 @import "core/typography";
 @import "core/utilities";
 @import "components/button";
+@import "components/animations";
 
 body {
   background: url('/dist/images/seigaiha.png');
@@ -91,4 +92,14 @@ body {
 
 .Score {
   display: none;
+}
+
+.MatchResult {
+  display: none;
+  color: $color2;
+
+  &-winner {
+    color: $color1;
+    font-size: 5rem;
+  }
 }

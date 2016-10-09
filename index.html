@@ -41,6 +41,12 @@
       <div class="row">
         <div class="col-sm-12">
           <h3>You are the <span class="Game-choice ChoiceTitle-watcher">watcher</span></h3>
+          <p>
+            This is the jankenpon game. You will have to choose between 'Rock', 'Paper', or 'Scissors'.<br>
+            Rock wins on Scissors, Scissors wins on Paper and Paper wins on Rock.<br>
+            The winner is the first to reach 10 victory rounds!
+          </p>
+          <br class="u-margin">
           <button class="PlayButton Button Button-large Button-primary">Play</button>
         </div>
       </div>
@@ -57,14 +63,14 @@
           <div class="row">
             <div class="col-sm-6">
               <h4>Computer #1</h4>
-              <p class="HandGame">
-                <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+              <p class="HandGame HandGame-player1">
+                <i class="fa" aria-hidden="true"></i>
               </p>
             </div>
             <div class="col-sm-6">
               <h4>Computer #2</h4>
-              <p class="HandGame">
-                <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+              <p class="HandGame HandGame-player2">
+                <i class="fa" aria-hidden="true"></i>
               </p>
             </div>
           </div>
@@ -74,12 +80,20 @@
       <div class="Score u-margin">
         <div class="row">
           <div class="col-sm-6">
-            5
+            <p class="Score-counter-player1">0</p>
           </div>
           <div class="col-sm-6">
-            6
+            <p class="Score-counter-player2">0</p>
           </div>
+        </div>
+      </div>
 
+      <div class="MatchResult">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4>And the winner is:</h4>
+            <p class="MatchResult-winner">Nobody</p>
+          </div>
         </div>
       </div>
 
