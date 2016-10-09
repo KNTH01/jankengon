@@ -41,6 +41,7 @@ class Player {
     let playRandom50 = (rivalScores) => {
       if (rivalScores && rivalScores.length >= 2) {
         let scores = rivalScores
+
         if (rivalScores.length > 2) {
           scores = rivalScores.slice(rivalScores.length - 2)
         }
@@ -79,6 +80,7 @@ class Player {
       }
 
       const score = rivalScores.length === 1 ? rivalScores[0] : [rivalScores.length - 1]
+
       if (score.status === PlayerScore.STATUS_WON) {
         switch (score.hit) {
           case BattleRPS.ROCK:
@@ -103,6 +105,7 @@ class Player {
       }
 
       const score = rivalScores.length === 1 ? rivalScores[0] : [rivalScores.length - 1]
+
       if (score.status === PlayerScore.STATUS_LOST) {
         switch (score.hit) {
           case BattleRPS.ROCK:
@@ -121,6 +124,7 @@ class Player {
 
     for (let strategy of strategies) {
       const res = strategy(rivalScores)
+
       if (res) {
         // if strategy match, then for for it, else check the next one
         return res

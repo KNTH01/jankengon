@@ -1,3 +1,6 @@
+/**
+ * Represents the score of a Player
+ */
 class PlayerScore {
   constructor () {
     this.score = []
@@ -34,6 +37,10 @@ PlayerScore.STATUS_WON = 'W'
 PlayerScore.STATUS_LOST = 'L'
 PlayerScore.STATUS_EQUALITY = 'E'
 
+/**
+ * Handle the GameScore which is composed of 2 PlayerScore
+ * managed by BattleManager
+ */
 class GameScore {
   constructor (playerScore1 = new PlayerScore(), playerScore2 = new PlayerScore()) {
     this.playerScores = []
