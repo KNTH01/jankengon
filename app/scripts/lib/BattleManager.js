@@ -57,6 +57,16 @@ class BattleManager {
       this.done = true
     }
   }
+
+  get winner () {
+    if (this.p1.winner) {
+      return this.p1
+    } else if (this.p2.winner) {
+      return this.p2
+    } else {
+      return null
+    }
+  }
 }
 
 BattleManager.ROUNDS_NUMBER = 10

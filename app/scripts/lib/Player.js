@@ -4,6 +4,7 @@ class Player {
   constructor (playerType = Player.COMPUTER, playerMode = Player.COMPUTER_MODE_RANDOM) {
     this.playerType = playerType
     this.playerMode = playerMode
+    this.winner = false
   }
 
   play (hit = null, rivalScore = null) {

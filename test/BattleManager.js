@@ -27,57 +27,29 @@ describe('Battle Manager', function () {
 
         const bm = new BattleManager(comp1, comp2)
 
-        // let score = bm.score()
-        let scorePlayer1 = [ {
-          status: 'W',
-          hit: 'R'
-        }, {
-          status: 'W',
-          hit: 'R'
-        } ]
-
-        let scorePlayer2 = [ {
-          status: 'L',
-          hit: 'S'
-        }, {
-          status: 'L',
-          hit: 'S'
-        } ]
-
-        bm.score([scorePlayer1, scorePlayer2])
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'R' }, { status: 'L', hit: 'S' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'R' }, { status: 'L', hit: 'S' })
 
         // the match is not finished yet, just 2 rounds have been played
-        expect(bm.done()).to.be.false()
-        expect(bm.winner()).to.be.null()
+        expect(bm.done).to.be.false
+        expect(bm.winner).to.be.null
 
-        scorePlayer1.push({ status: 'W', hit: 'P' })
-        scorePlayer1.push({ status: 'W', hit: 'S' })
-        scorePlayer1.push({ status: 'W', hit: 'R' })
-        scorePlayer1.push({ status: 'W', hit: 'S' })
-        scorePlayer1.push({ status: 'W', hit: 'R' })
-        scorePlayer1.push({ status: 'W', hit: 'S' })
-        scorePlayer1.push({ status: 'W', hit: 'P' })
-        scorePlayer1.push({ status: 'L', hit: 'P' })
-        scorePlayer1.push({ status: 'E', hit: 'P' })
-        scorePlayer1.push({ status: 'W', hit: 'S' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'P' }, { status: 'L', hit: 'R' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'S' }, { status: 'L', hit: 'P' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'R' }, { status: 'L', hit: 'S' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'S' }, { status: 'L', hit: 'P' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'R' }, { status: 'L', hit: 'S' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'S' }, { status: 'L', hit: 'P' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'P' }, { status: 'L', hit: 'R' })
+        bm.gameScore.registerNewScores({ status: 'L', hit: 'P' }, { status: 'W', hit: 'R' })
+        bm.gameScore.registerNewScores({ status: 'E', hit: 'P' }, { status: 'E', hit: 'P' })
+        bm.gameScore.registerNewScores({ status: 'W', hit: 'S' }, { status: 'L', hit: 'P' })
 
-        scorePlayer2.push({ status: 'L', hit: 'R' })
-        scorePlayer2.push({ status: 'L', hit: 'P' })
-        scorePlayer2.push({ status: 'L', hit: 'S' })
-        scorePlayer2.push({ status: 'L', hit: 'P' })
-        scorePlayer2.push({ status: 'L', hit: 'S' })
-        scorePlayer2.push({ status: 'L', hit: 'P' })
-        scorePlayer2.push({ status: 'L', hit: 'R' })
-        scorePlayer2.push({ status: 'W', hit: 'R' })
-        scorePlayer2.push({ status: 'E', hit: 'P' })
-        scorePlayer2.push({ status: 'L', hit: 'P' })
-
-        bm.score([scorePlayer1, scorePlayer2])
-
-        expect(bm.done()).to.be.true()
-        expect(bm.winner()).to.be.equal(comp1)
-        expect(scorePlayer1.length).to.be.equal(scorePlayer2.length)
-        expect(bm.nbRounds()).to.be.equal(12)
+        expect(bm.gameScore.getMaxWonRounds()).to.be.equal(10)
+        expect(bm.gameScore.getMaxLostRounds()).to.be.equal(10)
+        expect(bm.gameScore.getMaxEqualityRounds()).to.be.equal(1)
+        expect(bm.winner).to.be.equal(comp1)
+        expect(bm.nbRound).to.be.equal(12)
       })
     })
   })
