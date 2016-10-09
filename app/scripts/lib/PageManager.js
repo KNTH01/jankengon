@@ -229,6 +229,6 @@ class PageManager {
 }
 PageManager.GAME_WATCHER = 'watcher'
 PageManager.GAME_PLAYER = 'player'
-PageManager.BATTLE_PLAYER_MSG_WAIT = 'Wait for counter to be 0 before select ;)'
+PageManager.BATTLE_PLAYER_MSG_WAIT = 'Choose a hit to play'
 PageManager.BATTLE_PLAYER_MSG_CLICKNOW = 'Hurry, cli clic click !!!'
 export default PageManager
