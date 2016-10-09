@@ -70,20 +70,22 @@ body {
 }
 
 .BattlePlayer {
+  display: none;
+
   &-action {
     font-size: 5rem !important;
-    transition: .3s ease all;
+    transition: 0.3s ease all;
   }
 
   &-action:hover {
     cursor: pointer;
     transform: scale(1.25);
-    transition: .3s ease all;
+    transition: 0.3s ease all;
   }
 }
 
 .Battle {
-  display: none;
+  visibility: hidden;
 
   &-counter {
     background-color: white;
@@ -95,7 +97,7 @@ body {
   }
 
   &-result {
-    display: none;
+    visibility: hidden;
   }
 }
 
@@ -104,7 +106,7 @@ body {
 }
 
 .Score {
-  display: none;
+  visibility: hidden;
   font-size: 2rem;
   font-weight: bold;
   z-index: 2;

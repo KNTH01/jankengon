@@ -1,3 +1,4 @@
+
 import BattleManager from './BattleManager'
 import BattleRPS from './BattleRPS'
 import Player from './Player'
@@ -62,24 +63,31 @@ class PageManager {
   attachPlayerChoiceEvent () {
     document.querySelector('.BattlePlayer-action--R').onclick = () => {
       this.playerBattleChoice = BattleRPS.ROCK
+      this.printGameBattleHit1(this.playerBattleChoice)
     }
     document.querySelector('.BattlePlayer-action--P').onclick = () => {
       this.playerBattleChoice = BattleRPS.PAPER
+      this.printGameBattleHit1(this.playerBattleChoice)
     }
     document.querySelector('.BattlePlayer-action--S').onclick = () => {
       this.playerBattleChoice = BattleRPS.SCISSORS
+      this.printGameBattleHit1(this.playerBattleChoice)
     }
   }
 
   gameSelection (gameMode) {
-    this.setChoiceTitle(gameMode)
-  }
-
-  setChoiceTitle (gameMode) {
     const selectorCls = 'Game-choice'
     const choiceTitleElem = document.querySelector(`.${selectorCls}`)
     choiceTitleElem.innerText = gameMode
     choiceTitleElem.className = `${selectorCls} ChoiceTitle-${gameMode}`
+
+    if (gameMode === PageManager.GAME_WATCHER) {
+      document.querySelector('.Battle-result-choice').innerText = 'Computer #1'
+      document.querySelector('.BattlePlayer').style.display = 'none'
+    } else {
+      document.querySelector('.Battle-result-choice').innerText = 'YOU'
+      document.querySelector('.BattlePlayer').style.display = 'block'
+    }
   }
 
   startBattle () {
@@ -87,56 +95,90 @@ class PageManager {
     if (this.$playButton.disabled === false) {
       this.resetBattle()
       this.$playButton.disabled = true
-      this.$battle.style.display = 'block'
+      document.querySelector('.ChoiceButtons-watcher').disabled = true
+      document.querySelector('.ChoiceButtons-player').disabled = true
+      this.$battle.style.visibility = 'visible'
+      this.$battleResult.style.visibility = 'visible'
+      this.$score.style.visibility = 'visible'
 
       this.launchCounter()
     }
   }
 
   resetBattle () {
-    this.$battle.style.display = 'none'
-    this.$battleResult.style.display = 'none'
-    this.$score.style.display = 'none'
+    this.$battle.style.visibility = 'hidden'
+    this.$battleResult.style.visibility = 'hidden'
+    this.$score.style.visibility = 'hidden'
   }
 
   launchCounter () {
     let counter = 3
-    const elem = document.querySelector('.Battle-counter')
+    const $elem = document.querySelector('.Battle-counter')
     const isRealPlayer = document.querySelector('.Game-choice').innerText === 'player'
 
-    elem.innerText = counter
+    $elem.innerText = counter
 
     if (this.counterIntervalId === null) {
       this.counterIntervalId = setInterval(() => {
         counter--
-        elem.innerText = counter
+        $elem.innerText = counter
+
         if (counter === 0) {
           clearInterval(this.counterIntervalId)
           this.counterIntervalId = null
 
-          if (this.bm === null) {
-            this.$battleResult.style.display = 'block'
-            this.$score.style.display = 'block'
+          Animate.attachAnimation('.Battle-counter', 'animCounterGo')
+          this.changePlayerBattleChoiceMessage(PageManager.BATTLE_PLAYER_MSG_CLICKNOW)
 
-            const p1 = isRealPlayer ? new Player('YOU', Player.PLAYER) : new Player('Computer #1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
-            const p2 = new Player('Computer #2', Player.COMPUTER, Player.COMPUTER_MODE_GON)
-            this.bm = new BattleManager(p1, p2)
-          }
+          setTimeout(() => {
+            if (this.bm === null) {
+              this.$battleResult.style.display = 'block'
+              this.$score.style.display = 'block'
 
-          this.launchMatch()
+              const p1 = isRealPlayer ? new Player('YOU', Player.PLAYER) : new Player('Computer #1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
+              const p2 = new Player('Computer #2', Player.COMPUTER, Player.COMPUTER_MODE_GON)
+              this.bm = new BattleManager(p1, p2)
+            }
 
-          if (!this.bm.done) {
-            this.launchCounter()
-          } else {
-            this.endMatch()
-          }
+            this.launchMatch()
+
+            if (!this.bm.done) {
+              this.launchCounter()
+            } else {
+              this.endMatch()
+            }
+          }, 1000)
         }
       }, 1000)
     }
   }
 
+  mapGameBattleHit (hit) {
+    const mapRPSToCls = {
+      'R': 'fa-hand-rock-o',
+      'P': 'fa-hand-paper-o',
+      'S': 'fa-hand-scissors-o'
+    }
+    return mapRPSToCls[hit]
+  }
+
+  printGameBattleHit1 (hit) {
+    document.querySelector('.HandGame-player1 i').className = `fa ${this.mapGameBattleHit(hit)}`
+  }
+
+  printGameBattleHit2 (hit) {
+    document.querySelector('.HandGame-player2 i').className = `fa ${this.mapGameBattleHit(hit)}`
+  }
+
+  changePlayerBattleChoiceMessage (msg) {
+    document.querySelector('.BattlePlayer-msg').innerText = msg
+  }
+
   launchMatch () {
     const scores = this.bm.battle(this.playerBattleChoice)
+
+    this.printGameBattleScore(scores[0], scores[1])
+    this.updateScore(scores[0], scores[1])
 
     if (scores[0].status === 'E') {
       Animate.attachAnimation('.HandGame-player1', 'animWin1')
@@ -149,22 +191,21 @@ class PageManager {
       Animate.attachAnimation('.Score-counter-player2', 'animWinScore')
     }
 
-    this.printGameBattle(scores[0], scores[1])
-    this.updateScore(scores[0], scores[1])
-
     // clear the player battle choice for the next round
     this.playerBattleChoice = null
+    setTimeout(() => {
+      // remove battle choice
+      this.printGameBattleHit1(null)
+      this.printGameBattleHit2(null)
+    }, 1000)
+
+    // reset message
+    this.changePlayerBattleChoiceMessage(PageManager.BATTLE_PLAYER_MSG_WAIT)
   }
 
-  printGameBattle (score1, score2) {
-    const mapRPSToCls = {
-      'R': 'fa-hand-rock-o',
-      'P': 'fa-hand-paper-o',
-      'S': 'fa-hand-scissors-o'
-    }
-    console.log(score1.hit, score2.hit)
-    document.querySelector('.HandGame-player1 i').className = `fa ${mapRPSToCls[score1.hit]}`
-    document.querySelector('.HandGame-player2 i').className = `fa ${mapRPSToCls[score2.hit]}`
+  printGameBattleScore (score1, score2) {
+    this.printGameBattleHit1(score1.hit)
+    this.printGameBattleHit2(score2.hit)
   }
 
   updateScore (score1, score2) {
@@ -181,10 +222,13 @@ class PageManager {
     this.bm = null
     // enable playbutton
     this.$playButton.disabled = false
+    document.querySelector('.ChoiceButtons-watcher').disabled = false
+    document.querySelector('.ChoiceButtons-player').disabled = false
   }
 
 }
 PageManager.GAME_WATCHER = 'watcher'
 PageManager.GAME_PLAYER = 'player'
-
+PageManager.BATTLE_PLAYER_MSG_WAIT = 'Choose a hit to play'
+PageManager.BATTLE_PLAYER_MSG_CLICKNOW = 'Hurry, cli clic click !!!'
 export default PageManager
