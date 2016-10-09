@@ -121,15 +121,12 @@ class PageManager {
         counter--
         $elem.innerText = counter
 
-        // remove battle choice
-        this.printGameBattleHit1(null)
-        this.printGameBattleHit2(null)
-
         if (counter === 0) {
           clearInterval(this.counterIntervalId)
           this.counterIntervalId = null
 
           Animate.attachAnimation('.Battle-counter', 'animCounterGo')
+          this.changePlayerBattleChoiceMessage(PageManager.BATTLE_PLAYER_MSG_CLICKNOW)
 
           setTimeout(() => {
             if (this.bm === null) {
@@ -171,6 +168,10 @@ class PageManager {
     document.querySelector('.HandGame-player2 i').className = `fa ${this.mapGameBattleHit(hit)}`
   }
 
+  changePlayerBattleChoiceMessage (msg) {
+    document.querySelector('.BattlePlayer-msg').innerText = msg
+  }
+
   launchMatch () {
     const scores = this.bm.battle(this.playerBattleChoice)
 
@@ -190,6 +191,14 @@ class PageManager {
 
     // clear the player battle choice for the next round
     this.playerBattleChoice = null
+    setTimeout(() => {
+      // remove battle choice
+      this.printGameBattleHit1(null)
+      this.printGameBattleHit2(null)
+    }, 1000)
+
+    // reset message
+    this.changePlayerBattleChoiceMessage(PageManager.BATTLE_PLAYER_MSG_WAIT)
   }
 
   printGameBattleScore (score1, score2) {
