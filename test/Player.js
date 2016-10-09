@@ -6,7 +6,7 @@ describe('Player', function () {
   describe('Player Computer in Random mode', function () {
     it('should play randomly', () => {
       const RPS = [BattleRPS.ROCK, BattleRPS.PAPER, BattleRPS.SCISSORS]
-      const computerPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
+      const computerPlayer = new Player('computer', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
       const hit = computerPlayer.play()
 
       expect(RPS).to.include(hit)
@@ -15,7 +15,7 @@ describe('Player', function () {
 
   describe('Player Computer in Gon mode', function () {
     it('should play randomly 33% with no battle score', () => {
-      const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
+      const gonPlayer = new Player('Gon', Player.COMPUTER, Player.COMPUTER_MODE_GON)
       const RPS = [BattleRPS.ROCK, BattleRPS.PAPER, BattleRPS.SCISSORS]
       let hit = gonPlayer.play()
 
@@ -30,7 +30,7 @@ describe('Player', function () {
     })
 
     it('should play randomly 50% with battle score twice same hits', () => {
-      const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
+      const gonPlayer = new Player('Gon', Player.COMPUTER, Player.COMPUTER_MODE_GON)
       let rivalScore = []
       let hit = null
 
@@ -57,7 +57,7 @@ describe('Player', function () {
     })
 
     it('should play a specific hit when rival won', () => {
-      const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
+      const gonPlayer = new Player('Gon', Player.COMPUTER, Player.COMPUTER_MODE_GON)
       let rivalScore = []
       let hit = null
 
@@ -75,7 +75,7 @@ describe('Player', function () {
     })
 
     it('should play a specific hit when rival lose', () => {
-      const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
+      const gonPlayer = new Player('Gon', Player.COMPUTER, Player.COMPUTER_MODE_GON)
       let rivalScore = []
       let hit = null
 
