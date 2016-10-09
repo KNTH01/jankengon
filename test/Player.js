@@ -26,7 +26,7 @@ describe('Player', function () {
       expect(RPS).to.include(hit)
 
       // if equality, next rounds would be random
-      hit = gonPlayer(null, [{hit: 'R', won: false, equality: true}])
+      hit = gonPlayer(null, [{hit: 'R', status: 'E'}])
 
       // random hit
       expect(RPS).to.include(hit)
@@ -62,15 +62,15 @@ describe('Player', function () {
       let rivalScore = []
       let hit = null
 
-      rivalScore = [{hit: 'R', won: true}]
+      rivalScore = [{hit: 'R', status: 'W'}]
       hit = gonPlayer.play(null, rivalScore)
       expect(hit).to.be('P')
 
-      rivalScore = [{hit: 'P', won: true}]
+      rivalScore = [{hit: 'P', status: 'W'}]
       hit = gonPlayer.play(null, rivalScore)
       expect(hit).to.be('S')
 
-      rivalScore = [{hit: 'S', won: true}]
+      rivalScore = [{hit: 'S', status: 'W'}]
       hit = gonPlayer.play(null, rivalScore)
       expect(hit).to.be('R')
     })
@@ -79,15 +79,15 @@ describe('Player', function () {
       let rivalScore = []
       let hit = null
 
-      rivalScore = [{hit: 'R', won: false}]
+      rivalScore = [{hit: 'R', status: 'L'}]
       hit = gonPlayer.play(null, rivalScore)
       expect(hit).to.be('S')
 
-      rivalScore = [{hit: 'P', won: false}]
+      rivalScore = [{hit: 'P', status: 'L'}]
       hit = gonPlayer.play(null, rivalScore)
       expect(hit).to.be('R')
 
-      rivalScore = [{hit: 'S', won: false}]
+      rivalScore = [{hit: 'S', status: 'L'}]
       hit = gonPlayer.play(null, rivalScore)
       expect(hit).to.be('P')
     })
