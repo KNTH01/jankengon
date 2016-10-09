@@ -14,11 +14,8 @@ describe('Player', function () {
   })
 
   describe('Player Computer in Gon mode', function () {
-    beforeEach(function (done) {
+    it('should play randomly 33% with no battle score', () => {
       const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
-      done(gonPlayer)
-    })
-    it('should play randomly 33% with no battle score', (gonPlayer) => {
       const RPS = [BattleRPS.ROCK, BattleRPS.PAPER, BattleRPS.SCISSORS]
       let hit = gonPlayer.play()
 
@@ -26,13 +23,14 @@ describe('Player', function () {
       expect(RPS).to.include(hit)
 
       // if equality, next rounds would be random
-      hit = gonPlayer(null, [{hit: 'R', status: 'E'}])
+      hit = gonPlayer.play(null, [{hit: 'R', status: 'E'}])
 
       // random hit
       expect(RPS).to.include(hit)
     })
 
-    it('should play randomly 50% with battle score twice same hits', (gonPlayer) => {
+    it('should play randomly 50% with battle score twice same hits', () => {
+      const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
       let rivalScore = []
       let hit = null
 
@@ -58,38 +56,40 @@ describe('Player', function () {
       expect(['R', 'P']).to.include(hit)
     })
 
-    it('should play a specific hit when rival won', (gonPlayer) => {
+    it('should play a specific hit when rival won', () => {
+      const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
       let rivalScore = []
       let hit = null
 
       rivalScore = [{hit: 'R', status: 'W'}]
       hit = gonPlayer.play(null, rivalScore)
-      expect(hit).to.be('P')
+      expect(hit).to.be.equal('P')
 
       rivalScore = [{hit: 'P', status: 'W'}]
       hit = gonPlayer.play(null, rivalScore)
-      expect(hit).to.be('S')
+      expect(hit).to.be.equal('S')
 
       rivalScore = [{hit: 'S', status: 'W'}]
       hit = gonPlayer.play(null, rivalScore)
-      expect(hit).to.be('R')
+      expect(hit).to.be.equal('R')
     })
 
-    it('should play a specific hit when rival lose', (gonPlayer) => {
+    it('should play a specific hit when rival lose', () => {
+      const gonPlayer = new Player(Player.COMPUTER, Player.COMPUTER_MODE_GON)
       let rivalScore = []
       let hit = null
 
       rivalScore = [{hit: 'R', status: 'L'}]
       hit = gonPlayer.play(null, rivalScore)
-      expect(hit).to.be('S')
+      expect(hit).to.be.equal('S')
 
       rivalScore = [{hit: 'P', status: 'L'}]
       hit = gonPlayer.play(null, rivalScore)
-      expect(hit).to.be('R')
+      expect(hit).to.be.equal('R')
 
       rivalScore = [{hit: 'S', status: 'L'}]
       hit = gonPlayer.play(null, rivalScore)
-      expect(hit).to.be('P')
+      expect(hit).to.be.equal('P')
     })
   })
 })
