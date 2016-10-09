@@ -126,8 +126,10 @@ class PageManager {
       Animate.attachAnimation('.HandGame-player2', 'animWin2')
     } else if (scores[0].status === 'W') {
       Animate.attachAnimation('.HandGame-player1', 'animWin1')
+      Animate.attachAnimation('.Score-counter-player1', 'animWinScore')
     } else {
       Animate.attachAnimation('.HandGame-player2', 'animWin2')
+      Animate.attachAnimation('.Score-counter-player2', 'animWinScore')
     }
 
     this.printGameBattle(scores[0], scores[1])
