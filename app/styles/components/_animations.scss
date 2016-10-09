@@ -1,0 +1,35 @@
+.animWinScore {
+  animation: flash 1s ease 1;
+}
+@keyframes flash {
+  50% {
+    opacity: 0
+  }
+}
+
+.animWin1 {
+  animation: bigUp1 1s ease 1;
+}
+@keyframes bigUp1 {
+  50% {
+    transform: rotate(15deg) scale(1.5);
+  }
+}
+
+.animWin2 {
+  animation: bigUp2 1s ease 1;
+}
+@keyframes bigUp2 {
+  50% {
+    transform: rotate(-15deg) scale(1.5);
+  }
+}
+
+.animCounterGo {
+  animation: colorGo 1s ease 1;
+}
+@keyframes colorGo {
+  50% {
+    background-color: $color3;
+  }
+}

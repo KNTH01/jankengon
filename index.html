@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>jankengon</title>
+  <link rel="stylesheet" href="/node_modules/flexboxgrid/dist/flexboxgrid.min.css">
+  <link rel="stylesheet" href="/dist/styles/app.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="u-text-center">
+          <h1 class="Title">Jakengon</h1>
+          <h2 class="Subtitle">"jankenpon, pierre-feuille-ciseau, shifumi, schnick-schnack-schnuck"</h2>
+        </div>
+      </div>
+    </div>
+    <div class="BlockContainer">
+      <div class="row u-text-center">
+        <div class="col-sm-12">
+          <h3 class="ChoiceTitle">Are you a <span class="ChoiceTitle-watcher">watcher</span> or a <span class="ChoiceTitle-player">player</span> ?</h3>
+        </div>
+      </div>
+      <div class="ChoiceButtons row u-text-center">
+        <div class="col-sm-4">
+          <!-- offset.... -->
+        </div>
+        <div class="col-sm-2">
+          <button class="ChoiceButtons-watcher Button">Watch</button>
+        </div>
+        <div class="col-sm-2">
+          <button class="ChoiceButtons-player Button">Play</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="BlockContainer Game u-text-center">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>You are the <span class="Game-choice ChoiceTitle-watcher">watcher</span></h3>
+          <p>
+            This is the jankenpon game. You will have to choose between 'Rock', 'Paper', or 'Scissors'.<br> Rock wins on Scissors, Scissors wins on Paper and Paper wins on Rock.<br> The winner is the first to reach 10 victory rounds!
+          </p>
+          <br class="u-margin">
+          <button class="PlayButton Button Button-large Button-primary">Play</button>
+        </div>
+      </div>
+      <br class="u-margin">
+      <br class="u-margin">
+      <br class="u-margin">
+      <br class="u-margin">
+      <div class="BattlePlayer">
+        <div class="row">
+          <div class="col-sm-12">
+            <p class="BattlePlayer-msg">Choose a hit to play</p>
+          </div>
+        </div>
+        <br class="u-margin">
+        <div class="row">
+          <div class="col-sm-4">
+            <i class="BattlePlayer-action BattlePlayer-action--R fa fa-hand-rock-o"></i>
+          </div>
+          <div class="col-sm-4">
+            <i class="BattlePlayer-action BattlePlayer-action--P fa fa-hand-paper-o"></i>
+          </div>
+          <div class="col-sm-4">
+            <i class="BattlePlayer-action BattlePlayer-action--S fa fa-hand-scissors-o"></i>
+          </div>
+        </div>
+      </div>
+      <br class="u-margin">
+      <br class="u-margin">
+      <br class="u-margin">
+      <br class="u-margin">
+      <div class="Battle u-margin">
+        <div class="Battle-countContainer">
+          <div class="row">
+            <div class="col-sm-12">
+              <span class="Battle-counter">3</span>
+            </div>
+          </div>
+        </div>
+        <div class="Battle-result u-margin">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4 class="Battle-result-choice">Computer #1</h4>
+              <p class="HandGame HandGame-player1">
+                <i class="fa" aria-hidden="true"></i>
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <h4>Computer #2</h4>
+              <p class="HandGame HandGame-player2">
+                <i class="fa" aria-hidden="true"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="Score u-margin">
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="Score-counter-player1">0</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="Score-counter-player2">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="MatchResult">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4>And the winner is:</h4>
+            <p class="MatchResult-winner">Nobody</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="https://use.fontawesome.com/662cf70030.js"></script>
+  <script src="/dist/scripts/build.js"></script>
+</body>
+
+</html>

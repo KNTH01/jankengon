@@ -1,0 +1,39 @@
+.Button {
+  font-size: 1.5rem;
+  padding: 5px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: $text-color;
+  font-family: Oswald;
+  outline: none;
+
+  &-large {
+    font-size: 3rem;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+    outline: none;
+  }
+
+  &-primary {
+    background-color: $color1;
+    color: $text-color2;
+  }
+
+  &-secondary {
+    background-color: $color2;
+    color: $text-color2;
+  }
+
+  &:disabled {
+    opacity: 0.4
+  }
+}
