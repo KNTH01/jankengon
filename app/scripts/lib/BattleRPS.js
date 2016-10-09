@@ -10,6 +10,12 @@ class BattleRPS {
    * return 0 if equals
    */
   static battle (h1, h2) {
+    if (!h1) {
+      return 2
+    }
+    if (!h2) {
+      return 1
+    }
     switch (h1 + h2) {
       case 'PP':
       case 'RR':

@@ -4,7 +4,8 @@ class PlayerScore {
   }
 
   registerNewScore (score) {
-    if (score.status && score.hit) {
+    if (score.status) {
+      console.log(score)
       this.score.push(score)
     } else {
       throw 'Invalid score'

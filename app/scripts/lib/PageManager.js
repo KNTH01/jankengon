@@ -85,6 +85,7 @@ class PageManager {
   launchCounter () {
     let counter = 3
     const elem = document.querySelector('.Battle-counter')
+    const isRealPlayer = document.querySelector('.Game-choice').innerText === 'player'
 
     elem.innerText = counter
 
@@ -100,7 +101,7 @@ class PageManager {
             this.$battleResult.style.display = 'block'
             this.$score.style.display = 'block'
 
-            const p1 = new Player('Computer #1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
+            const p1 = isRealPlayer ? new Player('YOU', Player.PLAYER) : new Player('Computer #1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
             const p2 = new Player('Computer #2', Player.COMPUTER, Player.COMPUTER_MODE_GON)
             this.bm = new BattleManager(p1, p2)
           }
