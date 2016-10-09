@@ -69,6 +69,19 @@ body {
   }
 }
 
+.BattlePlayer {
+  &-action {
+    font-size: 5rem !important;
+    transition: .3s ease all;
+  }
+
+  &-action:hover {
+    cursor: pointer;
+    transform: scale(1.25);
+    transition: .3s ease all;
+  }
+}
+
 .Battle {
   display: none;
 
