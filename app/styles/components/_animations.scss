@@ -1,0 +1,17 @@
+.animWin1 {
+  animation: bigUp1 1s ease 1;
+}
+@keyframes bigUp1 {
+  50% {
+    transform: rotate(15deg) scale(1.5);
+  }
+}
+
+.animWin2 {
+  animation: bigUp2 1s ease 1;
+}
+@keyframes bigUp2 {
+  50% {
+    transform: rotate(-15deg) scale(1.5);
+  }
+}

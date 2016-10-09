@@ -1,12 +1,22 @@
 import BattleManager from './BattleManager'
 import Player from './Player'
 
-// class Animate {
-//
-//   static attachAnimation (selector) {
-//     document.querySelector
-//   }
-// }
+class Animate {
+
+  static attachAnimation (selector, animationName) {
+    let $elem = document.querySelector(selector)
+
+    const originalCls = $elem.className
+
+    $elem.className = `${originalCls} ${animationName}`
+
+    $elem.addEventListener('animationend', () => {
+      console.log('oui ce fut anime !')
+      // reset className
+      $elem.className = originalCls
+    })
+  }
+}
 
 class PageManager {
 
@@ -74,7 +84,7 @@ class PageManager {
   }
 
   launchCounter () {
-    let counter = 1
+    let counter = 3
     const elem = document.querySelector('.Battle-counter')
 
     elem.innerText = counter
@@ -110,6 +120,16 @@ class PageManager {
 
   launchMatch () {
     const scores = this.bm.battle()
+
+    if (scores[0].status === 'E') {
+      Animate.attachAnimation('.HandGame-player1', 'animWin1')
+      Animate.attachAnimation('.HandGame-player2', 'animWin2')
+    } else if (scores[0].status === 'W') {
+      Animate.attachAnimation('.HandGame-player1', 'animWin1')
+    } else {
+      Animate.attachAnimation('.HandGame-player2', 'animWin2')
+    }
+
     this.printGameBattle(scores[0], scores[1])
     this.updateScore(scores[0], scores[1])
   }

@@ -4,10 +4,12 @@ $color3: #46CDCF;
 $color4: #ABEDD8;
 $text-color: #424242;
 $text-color2: #EEE;
+
 @import "core/reset";
 @import "core/typography";
 @import "core/utilities";
 @import "components/button";
+@import "components/animations";
 
 body {
   background: url('/dist/images/seigaiha.png');
