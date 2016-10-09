@@ -11,7 +11,6 @@ class Animate {
     $elem.className = `${originalCls} ${animationName}`
 
     $elem.addEventListener('animationend', () => {
-      console.log('oui ce fut anime !')
       // reset className
       $elem.className = originalCls
     })
@@ -101,8 +100,8 @@ class PageManager {
             this.$battleResult.style.display = 'block'
             this.$score.style.display = 'block'
 
-            const p1 = new Player('Computer #1')
-            const p2 = new Player('Computer #2')
+            const p1 = new Player('Computer #1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
+            const p2 = new Player('Computer #2', Player.COMPUTER, Player.COMPUTER_MODE_GON)
             this.bm = new BattleManager(p1, p2)
           }
 
