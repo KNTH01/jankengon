@@ -76,10 +76,6 @@ class PageManager {
   }
 
   gameSelection (gameMode) {
-    this.setChoiceTitle(gameMode)
-  }
-
-  setChoiceTitle (gameMode) {
     const selectorCls = 'Game-choice'
     const choiceTitleElem = document.querySelector(`.${selectorCls}`)
     choiceTitleElem.innerText = gameMode
@@ -87,8 +83,10 @@ class PageManager {
 
     if (gameMode === PageManager.GAME_WATCHER) {
       document.querySelector('.Battle-result-choice').innerText = 'Computer #1'
+      document.querySelector('.BattlePlayer').style.display = 'none'
     } else {
       document.querySelector('.Battle-result-choice').innerText = 'YOU'
+      document.querySelector('.BattlePlayer').style.display = 'block'
     }
   }
 
@@ -97,16 +95,18 @@ class PageManager {
     if (this.$playButton.disabled === false) {
       this.resetBattle()
       this.$playButton.disabled = true
-      this.$battle.style.display = 'block'
+      this.$battle.style.visibility = 'visible'
+      this.$battleResult.style.visibility = 'visible'
+      this.$score.style.visibility = 'visible'
 
       this.launchCounter()
     }
   }
 
   resetBattle () {
-    this.$battle.style.display = 'none'
-    this.$battleResult.style.display = 'none'
-    this.$score.style.display = 'none'
+    this.$battle.style.visibility = 'hidden'
+    this.$battleResult.style.visibility = 'hidden'
+    this.$score.style.visibility = 'hidden'
   }
 
   launchCounter () {
