@@ -1,6 +1,5 @@
 const expect = require('chai').expect
 import BattleManager from '../app/scripts/lib/BattleManager'
-import BattleRPS from '../app/scripts/lib/BattleRPS'
 import Player from '../app/scripts/lib/Player'
 
 describe('Battle Manager', function () {
