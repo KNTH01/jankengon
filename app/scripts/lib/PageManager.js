@@ -95,6 +95,8 @@ class PageManager {
     if (this.$playButton.disabled === false) {
       this.resetBattle()
       this.$playButton.disabled = true
+      document.querySelector('.ChoiceButtons-watcher').disabled = true
+      document.querySelector('.ChoiceButtons-player').disabled = true
       this.$battle.style.visibility = 'visible'
       this.$battleResult.style.visibility = 'visible'
       this.$score.style.visibility = 'visible'
@@ -220,6 +222,8 @@ class PageManager {
     this.bm = null
     // enable playbutton
     this.$playButton.disabled = false
+    document.querySelector('.ChoiceButtons-watcher').disabled = false
+    document.querySelector('.ChoiceButtons-player').disabled = false
   }
 
 }
