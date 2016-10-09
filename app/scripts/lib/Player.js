@@ -22,6 +22,8 @@ class Player {
       return this.playGon(rivalScores)
     } else if (hit) {
       return hit
+    } else if (!hit && this.playerType === Player.PLAYER) {
+      return null
     } else {
       throw 'Illegal player move !'
     }

@@ -1,4 +1,5 @@
 import BattleManager from './BattleManager'
+import BattleRPS from './BattleRPS'
 import Player from './Player'
 
 class Animate {
@@ -31,12 +32,16 @@ class PageManager {
     // BattleManager instance
     this.bm = null
 
+    // when the player plays, this stores his hit
+    this.playerBattleChoice = null
+
     this.init()
   }
 
   init () {
     this.attachGameSelectionEvent()
     this.attachPlayEvent()
+    this.attachPlayerChoiceEvent()
   }
 
   attachGameSelectionEvent () {
@@ -51,6 +56,18 @@ class PageManager {
   attachPlayEvent () {
     this.$playButton.onclick = () => {
       this.startBattle()
+    }
+  }
+
+  attachPlayerChoiceEvent () {
+    document.querySelector('.BattlePlayer-action--R').onclick = () => {
+      this.playerBattleChoice = BattleRPS.ROCK
+    }
+    document.querySelector('.BattlePlayer-action--P').onclick = () => {
+      this.playerBattleChoice = BattleRPS.PAPER
+    }
+    document.querySelector('.BattlePlayer-action--S').onclick = () => {
+      this.playerBattleChoice = BattleRPS.SCISSORS
     }
   }
 
@@ -85,6 +102,7 @@ class PageManager {
   launchCounter () {
     let counter = 3
     const elem = document.querySelector('.Battle-counter')
+    const isRealPlayer = document.querySelector('.Game-choice').innerText === 'player'
 
     elem.innerText = counter
 
@@ -100,7 +118,7 @@ class PageManager {
             this.$battleResult.style.display = 'block'
             this.$score.style.display = 'block'
 
-            const p1 = new Player('Computer #1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
+            const p1 = isRealPlayer ? new Player('YOU', Player.PLAYER) : new Player('Computer #1', Player.COMPUTER, Player.COMPUTER_MODE_RANDOM)
             const p2 = new Player('Computer #2', Player.COMPUTER, Player.COMPUTER_MODE_GON)
             this.bm = new BattleManager(p1, p2)
           }
@@ -118,7 +136,7 @@ class PageManager {
   }
 
   launchMatch () {
-    const scores = this.bm.battle()
+    const scores = this.bm.battle(this.playerBattleChoice)
 
     if (scores[0].status === 'E') {
       Animate.attachAnimation('.HandGame-player1', 'animWin1')
@@ -133,6 +151,9 @@ class PageManager {
 
     this.printGameBattle(scores[0], scores[1])
     this.updateScore(scores[0], scores[1])
+
+    // clear the player battle choice for the next round
+    this.playerBattleChoice = null
   }
 
   printGameBattle (score1, score2) {
