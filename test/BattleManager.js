@@ -9,11 +9,15 @@ describe('Battle Manager', function () {
       const comp2 = new Player(Player.COMPUTER)
 
       const bm = new BattleManager(comp1, comp2)
-      while (bm.done()) {
+
+      // the game has not been started
+      expect(bm.done).to.be.false
+
+      while (!bm.done) {
         bm.battle()
       }
 
-      expect(bm.done()).to.be.true()
+      expect(bm.done).to.be.true
     })
 
     describe('The Score', function () {
