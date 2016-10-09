@@ -24,3 +24,12 @@
     transform: rotate(-15deg) scale(1.5);
   }
 }
+
+.animCounterGo {
+  animation: colorGo 1s ease 1;
+}
+@keyframes colorGo {
+  50% {
+    background-color: $color3;
+  }
+}
