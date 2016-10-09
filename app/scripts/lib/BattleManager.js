@@ -16,9 +16,9 @@ class BattleManager {
     this.done = false
   }
 
-  battle () {
-    const hit1 = this.p1.play()
-    const hit2 = this.p2.play()
+  battle (uiHit1 = null, uiHit2 = null) {
+    const hit1 = this.p1.play(uiHit1)
+    const hit2 = this.p2.play(uiHit2)
     const res = BattleRPS.battle(hit1, hit2)
     let status1 = 'E'
     let status2 = 'E'
@@ -31,17 +31,20 @@ class BattleManager {
       status2 = 'W'
     }
 
-    this.gameScore.registerNewScores({
+    const scores = [ {
       hit: hit1,
       status: status1
     }, {
       hit: hit2,
       status: status2
-    })
+    } ]
+
+    this.gameScore.registerNewScores(scores[0], scores[1])
 
     this.nbRound++
 
     this.checkGameState()
+    return scores
   }
 
   checkGameState () {

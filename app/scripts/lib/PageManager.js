@@ -1,3 +1,6 @@
+import BattleManager from './BattleManager'
+import Player from './Player'
+
 class PageManager {
 
   constructor () {
@@ -8,6 +11,9 @@ class PageManager {
 
     // used to have a singleton of the counter interval
     this.counterIntervalId = null
+
+    // BattleManager instance
+    this.bm = null
 
     this.init()
   }
@@ -49,6 +55,11 @@ class PageManager {
       this.resetBattle()
       this.$playButton.disabled = true
       this.$battle.style.display = 'block'
+
+      const p1 = new Player()
+      const p2 = new Player()
+      this.bm = new BattleManager(p1, p2)
+
       this.launchCounter()
     }
   }
@@ -82,6 +93,9 @@ class PageManager {
   launchMatch () {
     this.$battleResult.style.display = 'block'
     this.$score.style.display = 'block'
+
+    const res = this.bm.battle()
+    console.log(res)
   }
 }
 PageManager.GAME_WATCHER = 'watcher'
