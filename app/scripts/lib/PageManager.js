@@ -94,9 +94,26 @@ class PageManager {
     this.$battleResult.style.display = 'block'
     this.$score.style.display = 'block'
 
-    const res = this.bm.battle()
-    console.log(res)
+    const scores = this.bm.battle()
+    this.printGameBattle(scores[0], scores[1])
+    this.updateScore(scores[0], scores[1])
   }
+
+  printGameBattle (score1, score2) {
+    const mapRPSToCls = {
+      'R': 'fa-hand-rock-o',
+      'P': 'fa-hand-paper-o',
+      'S': 'fa-hand-scissors-o'
+    }
+    document.querySelector('.HandGame-player1 i').className = `fa ${mapRPSToCls[score1.hit]}`
+    document.querySelector('.HandGame-player2 i').className = `fa ${mapRPSToCls[score2.hit]}`
+  }
+
+  updateScore (score1, score2) {
+    document.querySelector('.Score-counter-player1').innerText = this.bm.gameScore.playerScores[0].countWonRounds()
+    document.querySelector('.Score-counter-player2').innerText = this.bm.gameScore.playerScores[1].countWonRounds()
+  }
+
 }
 PageManager.GAME_WATCHER = 'watcher'
 PageManager.GAME_PLAYER = 'player'
