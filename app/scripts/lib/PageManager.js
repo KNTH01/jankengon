@@ -63,12 +63,15 @@ class PageManager {
   attachPlayerChoiceEvent () {
     document.querySelector('.BattlePlayer-action--R').onclick = () => {
       this.playerBattleChoice = BattleRPS.ROCK
+      this.printGameBattleHit1(this.playerBattleChoice)
     }
     document.querySelector('.BattlePlayer-action--P').onclick = () => {
       this.playerBattleChoice = BattleRPS.PAPER
+      this.printGameBattleHit1(this.playerBattleChoice)
     }
     document.querySelector('.BattlePlayer-action--S').onclick = () => {
       this.playerBattleChoice = BattleRPS.SCISSORS
+      this.printGameBattleHit1(this.playerBattleChoice)
     }
   }
 
@@ -117,6 +120,11 @@ class PageManager {
       this.counterIntervalId = setInterval(() => {
         counter--
         $elem.innerText = counter
+
+        // remove battle choice
+        this.printGameBattleHit1(null)
+        this.printGameBattleHit2(null)
+
         if (counter === 0) {
           clearInterval(this.counterIntervalId)
           this.counterIntervalId = null
@@ -146,8 +154,28 @@ class PageManager {
     }
   }
 
+  mapGameBattleHit (hit) {
+    const mapRPSToCls = {
+      'R': 'fa-hand-rock-o',
+      'P': 'fa-hand-paper-o',
+      'S': 'fa-hand-scissors-o'
+    }
+    return mapRPSToCls[hit]
+  }
+
+  printGameBattleHit1 (hit) {
+    document.querySelector('.HandGame-player1 i').className = `fa ${this.mapGameBattleHit(hit)}`
+  }
+
+  printGameBattleHit2 (hit) {
+    document.querySelector('.HandGame-player2 i').className = `fa ${this.mapGameBattleHit(hit)}`
+  }
+
   launchMatch () {
     const scores = this.bm.battle(this.playerBattleChoice)
+
+    this.printGameBattleScore(scores[0], scores[1])
+    this.updateScore(scores[0], scores[1])
 
     if (scores[0].status === 'E') {
       Animate.attachAnimation('.HandGame-player1', 'animWin1')
@@ -160,22 +188,13 @@ class PageManager {
       Animate.attachAnimation('.Score-counter-player2', 'animWinScore')
     }
 
-    this.printGameBattle(scores[0], scores[1])
-    this.updateScore(scores[0], scores[1])
-
     // clear the player battle choice for the next round
     this.playerBattleChoice = null
   }
 
-  printGameBattle (score1, score2) {
-    const mapRPSToCls = {
-      'R': 'fa-hand-rock-o',
-      'P': 'fa-hand-paper-o',
-      'S': 'fa-hand-scissors-o'
-    }
-    console.log(score1.hit, score2.hit)
-    document.querySelector('.HandGame-player1 i').className = `fa ${mapRPSToCls[score1.hit]}`
-    document.querySelector('.HandGame-player2 i').className = `fa ${mapRPSToCls[score2.hit]}`
+  printGameBattleScore (score1, score2) {
+    this.printGameBattleHit1(score1.hit)
+    this.printGameBattleHit2(score2.hit)
   }
 
   updateScore (score1, score2) {
