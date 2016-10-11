@@ -1,7 +1,2 @@
 node_modules
-dist/images/*
-dist/scripts/*.js
-dist/styles/*.css
-dist/styles/fonts/*
-
 npm-debug.log
