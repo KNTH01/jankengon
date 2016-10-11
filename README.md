@@ -11,3 +11,7 @@ Have fun!
 * Clone the repository: `git clone git@github.com:KevinNTH/jankengon.git`
 * Install dependencies: `npm install`
 * Start the server: `npm run start`
+
+## Live demo
+
+https://kevinnth.github.io/jankengon/
